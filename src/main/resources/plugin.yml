@@ -1,0 +1,25 @@
+name: VirtualTag
+version: @VERSION@
+main: me.rerere.virtualtag.VirtualTag
+author: RE
+api-version: 1.17
+depend:
+  - ProtocolLib
+softdepend:
+  - PlaceholderAPI
+commands:
+  virtualtag:
+    aliases:
+      - vt
+      - vtag
+    usage: /virtualtag <param>
+    description: The main command of VirtualTag
+
+permissions:
+  virtualtag.*:
+    description: The parent permission of VirtualTag
+    default: op
+    children:
+      virtualtag.reload: true
+  virtualtag.reload:
+    default: op
