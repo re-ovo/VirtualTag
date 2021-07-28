@@ -1,4 +1,4 @@
-package me.rerere.virtualtag.tag
+package me.rerere.virtualtag.api
 
 data class Tag(
     val prefix: String,

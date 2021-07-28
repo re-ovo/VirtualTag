@@ -1,5 +1,6 @@
 package me.rerere.virtualtag.tag
 
+import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.virtualTag
 import org.bukkit.entity.Player
 
@@ -23,23 +24,23 @@ class VirtualTagHandler {
     fun setPlayerTag(player: Player, tag: Tag) {
         val oldTeam = this.getPlayerCurrentTeam(player)
         oldTeam?.takeIf { it.tag != tag }?.removePlayer(player.name)
-
         val team = this.getVirtualTeamByTag(tag) ?: VirtualTeam(
             name = this.generateTeamName(),
             prefix = tag.prefix,
             suffix = tag.suffix
-        ).apply {
-            players += player.name
-        }
+        )
         team.recreate()
         team.addPlayer(player.name)
         virtualTeams += team
-
         this.cleanVirtualTeams()
         virtualTag().logger.info("Current Team Size: ${virtualTeams.size}")
     }
 
-    fun getPlayerCurrentTeam(player: Player): VirtualTeam? = virtualTeams.find {
+    fun removePlayerTag(player: Player) {
+        this.getPlayerCurrentTeam(player)?.removePlayer(player.name)
+    }
+
+    private fun getPlayerCurrentTeam(player: Player): VirtualTeam? = virtualTeams.find {
         it.players.contains(player.name)
     }
 
@@ -55,7 +56,7 @@ class VirtualTagHandler {
     private fun cleanVirtualTeams() {
         virtualTeams.removeIf { team ->
             team.players.isEmpty().also {
-                if(it) {
+                if (it) {
                     team.destroy()
                 }
             }
@@ -63,6 +64,6 @@ class VirtualTagHandler {
     }
 
     private fun getVirtualTeamByTag(tag: Tag): VirtualTeam? = virtualTeams.find {
-        it.prefix == tag.prefix && it.suffix == tag.suffix
+        it.tag == tag
     }
 }

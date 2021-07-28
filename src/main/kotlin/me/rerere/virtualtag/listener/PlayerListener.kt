@@ -1,6 +1,6 @@
 package me.rerere.virtualtag.listener
 
-import me.rerere.virtualtag.tag.Tag
+import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.util.coloring
 import me.rerere.virtualtag.virtualTag
 import org.bukkit.event.EventHandler

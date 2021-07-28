@@ -3,6 +3,7 @@ package me.rerere.virtualtag
 import me.rerere.virtualtag.command.VirtualTagCommand
 import me.rerere.virtualtag.listener.PlayerListener
 import me.rerere.virtualtag.tag.VirtualTagHandler
+import me.rerere.virtualtag.tag.VirtualTagManager
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -12,11 +13,13 @@ class VirtualTag : JavaPlugin() {
     }
 
     lateinit var tagHandler: VirtualTagHandler
+    lateinit var tagManager: VirtualTagManager
 
     override fun onEnable() {
         logger.info("Start loading VirtualTag...")
 
         tagHandler = VirtualTagHandler()
+        tagManager = VirtualTagManager()
 
         // Register Listeners
         Bukkit.getPluginManager().apply {

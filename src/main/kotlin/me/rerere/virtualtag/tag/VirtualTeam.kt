@@ -2,6 +2,7 @@ package me.rerere.virtualtag.tag
 
 import com.comphenix.protocol.PacketType
 import com.comphenix.protocol.wrappers.WrappedChatComponent
+import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.util.*
 import me.rerere.virtualtag.virtualTag
 import java.util.*
@@ -12,6 +13,9 @@ class VirtualTeam(
     val prefix: String,
     val suffix: String
 ) {
+    init {
+        virtualTag().logger.info("New Team: $name")
+    }
     val players: MutableSet<String> = hashSetOf()
 
     val tag: Tag
@@ -76,7 +80,6 @@ class VirtualTeam(
     }
 
     fun destroy() {
-        virtualTag().logger.info("Removed team: $name")
         createPacket(PacketType.Play.Server.SCOREBOARD_TEAM){
             strings.writeSafely(0, name)
             integers.writeSafely(0, 1)
