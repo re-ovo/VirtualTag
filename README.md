@@ -1,2 +1,5 @@
 # VirtualTag
-VirtualTag is a name tag edit plugin for minecraft server
+VirtualTag is a NameTag Edit plugin for minecraft server
+
+## Features
+~ Developing

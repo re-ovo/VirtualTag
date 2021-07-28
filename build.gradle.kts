@@ -1,6 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.apache.tools.ant.filters.ReplaceTokens
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.github.johnrengelman.shadow") version "6.1.0"
@@ -9,6 +9,20 @@ plugins {
 
 group = "me.rerere"
 version = "1.0.0"
+
+repositories {
+    mavenCentral()
+    maven(url = "https://hub.spigotmc.org/nexus/content/groups/public/")
+    maven(url = "https://repo.dmulloy2.net/repository/public/")
+    maven(url = "https://repo.codemc.io/repository/nms/")
+}
+
+dependencies {
+    compileOnly(group = "org.spigotmc", name = "spigot", version = "1.17.1-R0.1-SNAPSHOT")
+    compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.17.1-R0.1-SNAPSHOT")
+    compileOnly(group = "com.comphenix.protocol", name = "ProtocolLib", version = "4.7.0")
+    testImplementation(kotlin("test"))
+}
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
@@ -42,25 +56,15 @@ tasks {
 (tasks.getByName("processResources") as ProcessResources).apply {
     from("src/main/resources") {
         include("**/*.yml")
-        filter<ReplaceTokens>("tokens" to mapOf(
-            "VERSION" to project.version
-        ))
+        filter<ReplaceTokens>(
+            "tokens" to mapOf(
+                "VERSION" to project.version
+            )
+        )
     }
     filesMatching("application.properties") {
         expand(project.properties)
     }
-}
-
-repositories {
-    mavenCentral()
-    maven("https://hub.spigotmc.org/nexus/content/groups/public/")
-    maven("https://repo.dmulloy2.net/repository/public/")
-}
-
-dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
-    compileOnly("com.comphenix.protocol:ProtocolLib:4.7.0")
-    testImplementation(kotlin("test"))
 }
 
 tasks.test {
