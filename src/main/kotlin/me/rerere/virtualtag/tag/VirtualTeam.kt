@@ -6,7 +6,6 @@ import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.util.*
 import java.util.*
 
-
 class VirtualTeam(
     val name: String,
     val prefix: String,
@@ -24,7 +23,7 @@ class VirtualTeam(
 
     fun addPlayer(player: String) {
         players += player
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM){
+        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
             strings.writeSafely(0, name)
             integers.writeSafely(0, 3)
             getSpecificModifier(Collection::class.java).writeSafely(0, players)
@@ -34,7 +33,7 @@ class VirtualTeam(
 
     fun removePlayer(player: String) {
         players -= player
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM){
+        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
             strings.writeSafely(0, name)
             integers.writeSafely(0, 4)
             getSpecificModifier(Collection::class.java).writeSafely(0, players)
@@ -43,7 +42,7 @@ class VirtualTeam(
     }
 
     private fun create() {
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM){
+        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
             // team name
             strings.writeSafely(0, name)
 
@@ -64,11 +63,14 @@ class VirtualTeam(
                     writeSafely(2, WrappedChatComponent.fromText(suffix))
                 }
                 strings.apply {
-                    writeSafely(0,"always")
+                    writeSafely(0, "always")
                     writeSafely(1, "never")
                 }
                 // color
-                getSpecificModifier(ChatFormatConverter.chatFormatClass).writeSafely(0, lastChatColor(prefix).toNmsChatFormat())
+                getSpecificModifier(ChatFormatConverter.chatFormatClass).writeSafely(
+                    0,
+                    lastChatColor(prefix).toNmsChatFormat()
+                )
                 // friendly tags
                 integers.writeSafely(0, 0x0)
             }
@@ -76,7 +78,7 @@ class VirtualTeam(
     }
 
     fun destroy() {
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM){
+        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
             strings.writeSafely(0, name)
             integers.writeSafely(0, 1)
             optionalStructures.writeSafely(0, Optional.empty())
