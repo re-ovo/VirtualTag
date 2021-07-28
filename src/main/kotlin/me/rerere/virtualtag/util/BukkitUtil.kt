@@ -27,11 +27,11 @@ object HexColorUtil {
     }
 }
 
-fun timerTask(delay: Long = 0, interval: Long = 1, task: () -> Unit) =
-    Bukkit.getScheduler().runTaskTimer(virtualTag(), Runnable {
-        task()
-    }, delay, interval)
+fun timerTask(delay: Long = 0, interval: Long = 1, task: () -> Unit) = Bukkit.getScheduler().runTaskTimer(
+        virtualTag(), Runnable(task), delay, interval
+    )
 
+fun asyncTask(task: () -> Unit) = Bukkit.getScheduler().runTaskAsynchronously(virtualTag(), Runnable(task))
 
 inline fun allPlayers(handler: (Player) -> Unit) {
     Bukkit.getOnlinePlayers().forEach {

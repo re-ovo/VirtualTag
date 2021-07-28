@@ -20,17 +20,24 @@ class VirtualTag : JavaPlugin() {
     override fun onEnable() {
         logger.info("Start loading VirtualTag...")
 
+        logger.info("Loading Config Files")
         configModule = ConfigModule()
+        logger.info("Loading TagHandler")
         tagHandler = VirtualTagHandler()
+        logger.info("Loading TagManager")
         tagManager = VirtualTagManager()
 
         // Register Listeners
+        logger.info("Registering event listeners")
         Bukkit.getPluginManager().apply {
             registerEvents(PlayerListener(), this@VirtualTag)
         }
 
         // Register Commands
+        logger.info("Registering command")
         Bukkit.getPluginCommand("virtualtag")?.setExecutor(VirtualTagCommand())
+
+        logger.info("VirtualTag is successfully loaded!")
     }
 
     fun reload() {

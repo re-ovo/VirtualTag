@@ -23,6 +23,12 @@ dependencies {
     compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.17.1-R0.1-SNAPSHOT")
     compileOnly(group = "com.comphenix.protocol", name = "ProtocolLib", version = "4.7.0")
     compileOnly(group = "me.clip", name = "placeholderapi", version = "2.10.10")
+
+    // Exposed ORM
+    implementation("org.jetbrains.exposed:exposed-core:0.32.1")
+    implementation("org.jetbrains.exposed:exposed-dao:0.32.1")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.32.1")
+
     testImplementation(kotlin("test"))
 }
 
@@ -44,7 +50,7 @@ tasks {
         dependencies {
             exclude(dependency("org.slf4j:.*"))
         }
-        minimize()
+        // minimize()
         relocate("kotlin", "me.rerere.virtualtag.thirdparty.kotlin")
         relocate("org.jetbrains", "me.rerere.virtualtag.thirdparty.org.jetbrains")
         relocate("org.intellij", "me.rerere.virtualtag.thirdparty.org.intellij")
