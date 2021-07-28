@@ -50,7 +50,7 @@ tasks {
         dependencies {
             exclude(dependency("org.slf4j:.*"))
         }
-        // minimize()
+        minimize()
         relocate("kotlin", "me.rerere.virtualtag.thirdparty.kotlin")
         relocate("org.jetbrains", "me.rerere.virtualtag.thirdparty.org.jetbrains")
         relocate("org.intellij", "me.rerere.virtualtag.thirdparty.org.intellij")
