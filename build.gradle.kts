@@ -15,12 +15,14 @@ repositories {
     maven(url = "https://hub.spigotmc.org/nexus/content/groups/public/")
     maven(url = "https://repo.dmulloy2.net/repository/public/")
     maven(url = "https://repo.codemc.io/repository/nms/")
+    maven(url = "https://repo.extendedclip.com/content/repositories/placeholderapi/")
 }
 
 dependencies {
     compileOnly(group = "org.spigotmc", name = "spigot", version = "1.17.1-R0.1-SNAPSHOT")
     compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.17.1-R0.1-SNAPSHOT")
     compileOnly(group = "com.comphenix.protocol", name = "ProtocolLib", version = "4.7.0")
+    compileOnly(group = "me.clip", name = "placeholderapi", version = "2.10.10")
     testImplementation(kotlin("test"))
 }
 

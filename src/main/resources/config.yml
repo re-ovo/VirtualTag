@@ -1,0 +1,38 @@
+#### VirtualTag #################################################
+#
+#     VirtualTag is a nametag plug-in designed for the modern
+# Minecraft version. It works at the data packet layer, so it
+# will not affect the existing scoreboard.
+#
+# Enjoy it :)
+#################################################################
+
+# General Settings
+general:
+  # Set how often VirtualTag updates the player's NameTag (ticks)
+  # This is very useful when there are placeholders in the nametag
+  # But you don’t have to worry about frequent updates that will
+  # take up bandwidth, because the plugin will only send packets
+  # after the player’s nametag is actually changed.
+  update_interval: 20
+
+  # If the player has multiple NameTags, should they be displayed at the same time?
+  # For example, if a player is both an [Admin] and a [VIP], then enabling this
+  # option will show his two nametags at the same time: [Admin][Vip]
+  # Note that final nametag will be sorted according to the priority
+  multiple_name_tags: false
+
+# NameTag Group Settings
+groups:
+  vip:
+    # What permissions are required to obtain the nametag of this group?
+    # You can customize permissions here, no need to start with "vt."
+    permission: 'vt.vip'
+    priority: 1
+    prefix: '&e[VIP]&r'
+    suffix: ''
+  default:
+    permission: ''
+    priority: 0
+    prefix: '&7'
+    suffix: ''
