@@ -15,6 +15,7 @@ class PlayerListener : Listener {
 
     @EventHandler
     fun onQuit(event: PlayerQuitEvent){
+        virtualTag().tagManager.playerQuit(event.player)
         virtualTag().tagHandler.removePlayerTag(event.player)
     }
 }

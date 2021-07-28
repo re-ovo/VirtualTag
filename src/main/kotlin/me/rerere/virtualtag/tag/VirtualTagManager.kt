@@ -52,4 +52,8 @@ class VirtualTagManager {
             virtualTag().tagHandler.setPlayerTag(player, targetTag)
         }
     }
+
+    fun playerQuit(player: Player) {
+        previousTagCache.remove(player.uniqueId)
+    }
 }

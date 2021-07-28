@@ -33,11 +33,11 @@ class VirtualTagHandler {
         team.addPlayer(player.name)
         virtualTeams += team
         this.cleanVirtualTeams()
-        virtualTag().logger.info("Current Team Size: ${virtualTeams.size}")
     }
 
     fun removePlayerTag(player: Player) {
         this.getPlayerCurrentTeam(player)?.removePlayer(player.name)
+        cleanVirtualTeams()
     }
 
     private fun getPlayerCurrentTeam(player: Player): VirtualTeam? = virtualTeams.find {

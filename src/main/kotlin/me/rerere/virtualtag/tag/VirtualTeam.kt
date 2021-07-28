@@ -4,7 +4,6 @@ import com.comphenix.protocol.PacketType
 import com.comphenix.protocol.wrappers.WrappedChatComponent
 import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.util.*
-import me.rerere.virtualtag.virtualTag
 import java.util.*
 
 
@@ -13,9 +12,6 @@ class VirtualTeam(
     val prefix: String,
     val suffix: String
 ) {
-    init {
-        virtualTag().logger.info("New Team: $name")
-    }
     val players: MutableSet<String> = hashSetOf()
 
     val tag: Tag
