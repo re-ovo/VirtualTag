@@ -5,6 +5,8 @@ import me.rerere.virtualtag.configuration.ConfigModule
 import me.rerere.virtualtag.listener.PlayerListener
 import me.rerere.virtualtag.tag.VirtualTagHandler
 import me.rerere.virtualtag.tag.VirtualTagManager
+import me.rerere.virtualtag.util.UpdateChecker
+import me.rerere.virtualtag.util.asyncTask
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -38,6 +40,8 @@ class VirtualTag : JavaPlugin() {
         Bukkit.getPluginCommand("virtualtag")?.setExecutor(VirtualTagCommand())
 
         logger.info("VirtualTag is successfully loaded!")
+
+        checkUpdate()
     }
 
     fun reload() {
@@ -53,6 +57,17 @@ class VirtualTag : JavaPlugin() {
 
     override fun onDisable() {
         Bukkit.getScheduler().cancelTasks(this)
+    }
+
+    private fun checkUpdate() {
+        asyncTask {
+            val latest = UpdateChecker.getLatestVersion()
+            if(this.description.version != latest){
+                logger.info("(!) Found a update: $latest, you are still using ${description.version}")
+            } else {
+                logger.info("You are using the latest version!")
+            }
+        }
     }
 
     companion object {
