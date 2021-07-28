@@ -21,5 +21,8 @@ permissions:
     default: op
     children:
       virtualtag.reload: true
+      virtualtag.groups: true
   virtualtag.reload:
+    default: op
+  virtualtag.groups:
     default: op
