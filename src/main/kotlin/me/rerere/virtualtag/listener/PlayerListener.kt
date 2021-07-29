@@ -10,6 +10,7 @@ class PlayerListener : Listener {
     @EventHandler
     fun onJoin(event: PlayerJoinEvent) {
         val player = event.player
+        virtualTag().tagHandler.sendCurrentNameTags(player)
         virtualTag().tagManager.updatePlayerTag(player)
     }
 

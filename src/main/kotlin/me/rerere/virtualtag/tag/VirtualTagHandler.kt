@@ -21,6 +21,12 @@ class VirtualTagHandler {
         }
     }
 
+    fun sendCurrentNameTags(player: Player) {
+        virtualTeams.forEach {
+            it.createForPlayer(player)
+        }
+    }
+
     fun setPlayerTag(player: Player, tag: Tag) {
         val oldTeam = this.getPlayerCurrentTeam(player)
         oldTeam?.takeIf { it.tag != tag }?.removePlayer(player.name)
