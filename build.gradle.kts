@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.github.johnrengelman.shadow") version "6.1.0"
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.5.31"
 }
 
 group = "me.rerere"
@@ -25,27 +25,21 @@ dependencies {
     compileOnly(group = "me.clip", name = "placeholderapi", version = "2.10.10")
 
     // Exposed ORM
-    implementation("org.jetbrains.exposed:exposed-core:0.32.1")
-    implementation("org.jetbrains.exposed:exposed-dao:0.32.1")
-    implementation("org.jetbrains.exposed:exposed-jdbc:0.32.1")
+    implementation("org.jetbrains.exposed:exposed-core:0.36.1")
+    implementation("org.jetbrains.exposed:exposed-dao:0.36.1")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.36.1")
 
     testImplementation(kotlin("test"))
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
+tasks.apply {
+    withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
+    withType<KotlinCompile>{
+        kotlinOptions.jvmTarget = "11"
+    }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "11"
-}
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = "11"
-}
-
-tasks {
     val fatJar by named("shadowJar", ShadowJar::class) {
         dependencies {
             exclude(dependency("org.slf4j:.*"))
@@ -59,22 +53,26 @@ tasks {
     artifacts {
         add("archives", fatJar)
     }
-}
 
-(tasks.getByName("processResources") as ProcessResources).apply {
-    from("src/main/resources") {
-        include("**/*.yml")
-        filter<ReplaceTokens>(
-            "tokens" to mapOf(
-                "VERSION" to project.version
+    processResources {
+        from("src/main/resources") {
+            include("**/*.yml")
+            filter<ReplaceTokens>(
+                "tokens" to mapOf(
+                    "VERSION" to project.version
+                )
             )
-        )
+        }
+        filesMatching("application.properties") {
+            expand(project.properties)
+        }
     }
-    filesMatching("application.properties") {
-        expand(project.properties)
-    }
-}
 
-tasks.test {
-    useJUnit()
+    test {
+        useJUnit()
+    }
+
+    build {
+        dependsOn(shadowJar)
+    }
 }
