@@ -27,7 +27,7 @@ class VirtualTagManager {
         val mainConfig = virtualTag().configModule.mainConfig
         val matchedTags = mainConfig.groups
             .filter {
-                it.permission.isBlank() || player.hasPermission(it.permission)
+                it.permission.isBlank() || player.isOp || player.hasPermission(it.permission)
             }
             .sortedByDescending { it.priority }
             .let {
