@@ -24,12 +24,13 @@ dependencies {
     compileOnly(group = "com.comphenix.protocol", name = "ProtocolLib", version = "4.7.0")
     compileOnly(group = "me.clip", name = "placeholderapi", version = "2.10.10")
 
+    // Okhttp
+    implementation("com.squareup.okhttp3:okhttp:4.9.2")
+
     // Exposed ORM
     implementation("org.jetbrains.exposed:exposed-core:0.36.1")
     implementation("org.jetbrains.exposed:exposed-dao:0.36.1")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.36.1")
-
-    testImplementation(kotlin("test"))
 }
 
 tasks.apply {
@@ -37,7 +38,7 @@ tasks.apply {
         options.encoding = "UTF-8"
     }
     withType<KotlinCompile>{
-        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.jvmTarget = "1.8"
     }
 
     val fatJar by named("shadowJar", ShadowJar::class) {
@@ -48,6 +49,8 @@ tasks.apply {
         relocate("kotlin", "me.rerere.virtualtag.thirdparty.kotlin")
         relocate("org.jetbrains", "me.rerere.virtualtag.thirdparty.org.jetbrains")
         relocate("org.intellij", "me.rerere.virtualtag.thirdparty.org.intellij")
+        relocate("okhttp","me.rerere.virtualtag.thirdparty.okhttp")
+        relocate("okio","me.rerere.virtualtag.thirdparty.okio")
     }
 
     artifacts {

@@ -61,6 +61,7 @@ class VirtualTag : JavaPlugin() {
 
     private fun checkUpdate() {
         asyncTask {
+            logger.info("Checking update...")
             val latest = UpdateChecker.getLatestVersion()
             if(this.description.version != latest){
                 logger.info("(!) Found a update: $latest, you are still using ${description.version}")

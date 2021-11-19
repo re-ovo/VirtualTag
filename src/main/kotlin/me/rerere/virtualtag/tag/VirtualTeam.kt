@@ -1,11 +1,8 @@
 package me.rerere.virtualtag.tag
 
-import com.comphenix.protocol.PacketType
-import com.comphenix.protocol.wrappers.WrappedChatComponent
 import me.rerere.virtualtag.api.Tag
-import me.rerere.virtualtag.util.*
+import me.rerere.virtualtag.tag.team.teamPacketSender
 import org.bukkit.entity.Player
-import java.util.*
 
 class VirtualTeam(
     val name: String,
@@ -24,102 +21,24 @@ class VirtualTeam(
 
     fun addPlayer(player: String) {
         players += player
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
-            strings.writeSafely(0, name)
-            integers.writeSafely(0, 3)
-            getSpecificModifier(Collection::class.java).writeSafely(0, players)
-            optionalStructures.writeSafely(0, Optional.empty())
-        }.broadcast()
+        teamPacketSender.addPlayer(this)
     }
 
     fun removePlayer(player: String) {
         players -= player
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
-            strings.writeSafely(0, name)
-            integers.writeSafely(0, 4)
-            getSpecificModifier(Collection::class.java).writeSafely(0, players)
-            optionalStructures.writeSafely(0, Optional.empty())
-        }.broadcast()
+        teamPacketSender.removePlayer(this)
     }
 
     private fun create() {
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
-            // team name
-            strings.writeSafely(0, name)
-
-            // team mode
-            integers.writeSafely(0, 0)
-
-            // players
-            getSpecificModifier(Collection::class.java).writeSafely(0, players)
-
-            // team info
-            optionalStructures.readSafely(0).get().apply {
-                chatComponents.apply {
-                    // DisplayName
-                    writeSafely(0, WrappedChatComponent.fromText(name))
-                    // Prefix
-                    writeSafely(1, WrappedChatComponent.fromText(prefix))
-                    // Suffix
-                    writeSafely(2, WrappedChatComponent.fromText(suffix))
-                }
-                strings.apply {
-                    writeSafely(0, "always")
-                    writeSafely(1, "never")
-                }
-                // color
-                getSpecificModifier(ChatFormatConverter.chatFormatClass).writeSafely(
-                    0,
-                    lastChatColor(prefix).toNmsChatFormat()
-                )
-                // friendly tags
-                integers.writeSafely(0, 0x0)
-            }
-        }.broadcast()
+        teamPacketSender.createTeam(this)
     }
 
     fun createForPlayer(player: Player) {
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
-            // team name
-            strings.writeSafely(0, name)
-
-            // team mode
-            integers.writeSafely(0, 0)
-
-            // players
-            getSpecificModifier(Collection::class.java).writeSafely(0, players)
-
-            // team info
-            optionalStructures.readSafely(0).get().apply {
-                chatComponents.apply {
-                    // DisplayName
-                    writeSafely(0, WrappedChatComponent.fromText(name))
-                    // Prefix
-                    writeSafely(1, WrappedChatComponent.fromText(prefix))
-                    // Suffix
-                    writeSafely(2, WrappedChatComponent.fromText(suffix))
-                }
-                strings.apply {
-                    writeSafely(0, "always")
-                    writeSafely(1, "never")
-                }
-                // color
-                getSpecificModifier(ChatFormatConverter.chatFormatClass).writeSafely(
-                    0,
-                    lastChatColor(prefix).toNmsChatFormat()
-                )
-                // friendly tags
-                integers.writeSafely(0, 0x0)
-            }
-        }.send(player)
+        teamPacketSender.createForPlayer(this, player)
     }
 
     fun destroy() {
-        createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
-            strings.writeSafely(0, name)
-            integers.writeSafely(0, 1)
-            optionalStructures.writeSafely(0, Optional.empty())
-        }.broadcast()
+        teamPacketSender.destroyTeam(this)
     }
 
     override fun equals(other: Any?): Boolean {
