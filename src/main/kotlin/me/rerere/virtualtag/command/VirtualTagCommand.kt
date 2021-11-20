@@ -1,5 +1,6 @@
 package me.rerere.virtualtag.command
 
+import me.rerere.virtualtag.command.subcommands.DebugCommand
 import me.rerere.virtualtag.command.subcommands.GroupsCommand
 import me.rerere.virtualtag.command.subcommands.ReloadCommand
 import me.rerere.virtualtag.util.coloring
@@ -13,7 +14,8 @@ import org.bukkit.command.TabCompleter
 class VirtualTagCommand : CommandExecutor,TabCompleter {
     private val subCommands: List<SubCommand> = listOf(
         GroupsCommand(),
-        ReloadCommand()
+        ReloadCommand(),
+        DebugCommand()
     )
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {

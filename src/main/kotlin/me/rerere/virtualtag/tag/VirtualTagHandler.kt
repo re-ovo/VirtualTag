@@ -5,7 +5,7 @@ import me.rerere.virtualtag.virtualTag
 import org.bukkit.entity.Player
 
 class VirtualTagHandler {
-    private val virtualTeams = hashSetOf<VirtualTeam>()
+    val virtualTeams = hashSetOf<VirtualTeam>()
 
     // Generate a unique team name
     private fun generateTeamName(): String {
@@ -28,6 +28,8 @@ class VirtualTagHandler {
     }
 
     fun setPlayerTag(player: Player, tag: Tag) {
+        player.setPlayerListName(null)
+
         val oldTeam = this.getPlayerCurrentTeam(player)
         oldTeam?.takeIf { it.tag != tag }?.removePlayer(player.name)
         val team = this.getVirtualTeamByTag(tag) ?: VirtualTeam(
