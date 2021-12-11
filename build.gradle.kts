@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "me.rerere"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
@@ -25,7 +25,7 @@ dependencies {
     compileOnly(group = "me.clip", name = "placeholderapi", version = "2.10.10")
 
     // Okhttp
-    implementation("com.squareup.okhttp3:okhttp:4.9.2")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
     // Exposed ORM
     implementation("org.jetbrains.exposed:exposed-core:0.36.1")
