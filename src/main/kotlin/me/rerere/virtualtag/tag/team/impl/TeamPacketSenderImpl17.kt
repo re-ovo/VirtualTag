@@ -9,6 +9,10 @@ import org.bukkit.entity.Player
 import java.util.*
 
 class TeamPacketSenderImpl17 : TeamPacketSender {
+    init {
+        println("code: 1")
+    }
+
     override fun createTeam(virtualTeam: VirtualTeam) {
         with(virtualTeam) {
             createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
@@ -27,9 +31,9 @@ class TeamPacketSenderImpl17 : TeamPacketSender {
                         // DisplayName
                         writeSafely(0, WrappedChatComponent.fromText(name))
                         // Prefix
-                        writeSafely(1, WrappedChatComponent.fromText(prefix))
+                        writeSafely(1, WrappedChatComponent.fromChatMessage(prefix)[0])
                         // Suffix
-                        writeSafely(2, WrappedChatComponent.fromText(suffix))
+                        writeSafely(2, WrappedChatComponent.fromChatMessage(suffix)[0])
                     }
                     strings.apply {
                         writeSafely(0, "always")
@@ -63,11 +67,11 @@ class TeamPacketSenderImpl17 : TeamPacketSender {
                 optionalStructures.readSafely(0).get().apply {
                     chatComponents.apply {
                         // DisplayName
-                        writeSafely(0, WrappedChatComponent.fromText(name))
+                        writeSafely(0, WrappedChatComponent.fromChatMessage(name)[0])
                         // Prefix
-                        writeSafely(1, WrappedChatComponent.fromText(prefix))
+                        writeSafely(1, WrappedChatComponent.fromChatMessage(prefix)[0])
                         // Suffix
-                        writeSafely(2, WrappedChatComponent.fromText(suffix))
+                        writeSafely(2, WrappedChatComponent.fromChatMessage(suffix)[0])
                     }
                     strings.apply {
                         writeSafely(0, "always")
