@@ -9,6 +9,7 @@ VirtualTag is a NameTag Edit plugin for **modern** minecraft server
 ## Support Version
 * 1.8.8
 * 1.17.x
+* 1.18.x
 
 ## Download
 https://github.com/jiangdashao/VirtualTag/releases/latest
