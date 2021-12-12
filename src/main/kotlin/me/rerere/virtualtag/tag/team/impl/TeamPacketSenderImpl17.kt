@@ -9,10 +9,6 @@ import org.bukkit.entity.Player
 import java.util.*
 
 class TeamPacketSenderImpl17 : TeamPacketSender {
-    init {
-        println("code: 1")
-    }
-
     override fun createTeam(virtualTeam: VirtualTeam) {
         with(virtualTeam) {
             createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
