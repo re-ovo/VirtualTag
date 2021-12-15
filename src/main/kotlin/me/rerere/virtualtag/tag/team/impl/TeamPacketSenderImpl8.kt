@@ -75,7 +75,7 @@ class TeamPacketSenderImpl8 : TeamPacketSender {
         }
     }
 
-    override fun addPlayer(virtualTeam: VirtualTeam) {
+    override fun addPlayer(virtualTeam: VirtualTeam, entities: Set<String>) {
         with(virtualTeam){
             createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
                 strings.apply {
@@ -89,12 +89,12 @@ class TeamPacketSenderImpl8 : TeamPacketSender {
                     writeSafely(2, 0) // packData
                 }
 
-                getSpecificModifier(Collection::class.java).writeSafely(0, players.toMutableList())
+                getSpecificModifier(Collection::class.java).writeSafely(0, entities.toMutableList())
             }.broadcast()
         }
     }
 
-    override fun removePlayer(virtualTeam: VirtualTeam) {
+    override fun removePlayer(virtualTeam: VirtualTeam, entities: Set<String>) {
         with(virtualTeam){
             createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
                 strings.apply {
@@ -108,7 +108,7 @@ class TeamPacketSenderImpl8 : TeamPacketSender {
                     writeSafely(2, 0) // packData
                 }
 
-                getSpecificModifier(Collection::class.java).writeSafely(0, players.toMutableList())
+                getSpecificModifier(Collection::class.java).writeSafely(0, entities.toMutableList())
             }.broadcast()
         }
     }

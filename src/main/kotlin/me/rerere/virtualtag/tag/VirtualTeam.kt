@@ -21,12 +21,12 @@ class VirtualTeam(
 
     fun addPlayer(player: String) {
         players += player
-        teamPacketSender.addPlayer(this)
+        teamPacketSender.addPlayer(this, setOf(player))
     }
 
     fun removePlayer(player: String) {
         players -= player
-        teamPacketSender.removePlayer(this)
+        teamPacketSender.removePlayer(this, setOf(player))
     }
 
     private fun create() {

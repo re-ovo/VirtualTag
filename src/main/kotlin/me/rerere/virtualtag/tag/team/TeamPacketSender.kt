@@ -14,9 +14,9 @@ interface TeamPacketSender {
 
     fun destroyTeam(virtualTeam: VirtualTeam)
 
-    fun addPlayer(virtualTeam: VirtualTeam)
+    fun addPlayer(virtualTeam: VirtualTeam, entities: Set<String>)
 
-    fun removePlayer(virtualTeam: VirtualTeam)
+    fun removePlayer(virtualTeam: VirtualTeam, entities: Set<String>)
 }
 
 val teamPacketSender: TeamPacketSender = when (nmsVersion()) {

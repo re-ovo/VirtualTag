@@ -95,23 +95,23 @@ class TeamPacketSenderImpl17 : TeamPacketSender {
         }
     }
 
-    override fun addPlayer(virtualTeam: VirtualTeam) {
+    override fun addPlayer(virtualTeam: VirtualTeam, entities: Set<String>) {
         with(virtualTeam){
             createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
                 strings.writeSafely(0, name)
                 integers.writeSafely(0, 3)
-                getSpecificModifier(Collection::class.java).writeSafely(0, players)
+                getSpecificModifier(Collection::class.java).writeSafely(0, entities)
                 optionalStructures.writeSafely(0, Optional.empty())
             }.broadcast()
         }
     }
 
-    override fun removePlayer(virtualTeam: VirtualTeam) {
+    override fun removePlayer(virtualTeam: VirtualTeam, entities: Set<String>) {
         with(virtualTeam){
             createPacket(PacketType.Play.Server.SCOREBOARD_TEAM) {
                 strings.writeSafely(0, name)
                 integers.writeSafely(0, 4)
-                getSpecificModifier(Collection::class.java).writeSafely(0, players)
+                getSpecificModifier(Collection::class.java).writeSafely(0, entities)
                 optionalStructures.writeSafely(0, Optional.empty())
             }.broadcast()
         }
