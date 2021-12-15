@@ -13,14 +13,14 @@ fun String.coloring(colorCode: Char = '&'): String =
 fun List<String>.coloring(colorCode: Char = '&'): List<String> = this.map { it.coloring(colorCode) }
 
 object HexColorUtil {
-    private val PATTERN = Pattern.compile("(?<!\\\\)(#[a-fA-F0-9]{6})")
+    private val PATTERN = Pattern.compile("&(#[A-Fa-f0-9]{6})")
 
     fun String.toHex(): String {
         var text = this
         var matcher: Matcher = PATTERN.matcher(text)
         while (matcher.find()) {
             val color = text.substring(matcher.start(), matcher.end())
-            text = text.replace(color, ChatColor.of(color).toString())
+            text = text.replace(color, ChatColor.of(color.substring(1)).toString())
             matcher = PATTERN.matcher(text) // 更新matcher
         }
         return text

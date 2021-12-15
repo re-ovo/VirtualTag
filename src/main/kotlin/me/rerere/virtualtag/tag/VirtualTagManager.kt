@@ -47,8 +47,8 @@ class VirtualTagManager {
             prefix = matchedTags.joinToString(separator = "") { it?.prefix ?: "" },
             suffix = matchedTags.joinToString(separator = "") { it?.suffix ?: "" }
         ).apply {
-            colorful()
             applyPlaceholderAPI(player)
+            colorful()
         }
         val previousTag = previousTagCache[player.uniqueId]
 
