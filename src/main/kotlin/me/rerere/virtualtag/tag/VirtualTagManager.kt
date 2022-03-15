@@ -14,9 +14,6 @@ class VirtualTagManager {
     // Cache the tag when the player uploads the update to prevent frequent tag updates
     private val previousTagCache = hashMapOf<UUID, Tag>()
 
-    // Ensure that the tag can be updated every certain time even though it has not changed
-    private val noUpdateTicks = hashMapOf<UUID, Int>()
-
     val task = timerTask(
         interval = virtualTag().configModule.mainConfig.updateInterval.toLong()
     ) {
@@ -53,18 +50,13 @@ class VirtualTagManager {
         val previousTag = previousTagCache[player.uniqueId]
 
         // Name tag changed, require update
-        if (targetTag != previousTag || (noUpdateTicks[player.uniqueId] ?: 0) > 100) {
+        if (targetTag != previousTag) {
             previousTagCache[player.uniqueId] = targetTag
-            noUpdateTicks[player.uniqueId] = 0
-
             virtualTag().tagHandler.setPlayerTag(player, targetTag)
-        } else {
-            noUpdateTicks[player.uniqueId] = noUpdateTicks[player.uniqueId]?.plus(1) ?: 1
         }
     }
 
     fun playerQuit(player: Player) {
         previousTagCache -= player.uniqueId
-        noUpdateTicks -= player.uniqueId
     }
 }

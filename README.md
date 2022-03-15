@@ -6,6 +6,10 @@
 
 VirtualTag is a NameTag Edit plugin for **modern** minecraft server
 
+# Known Issue
+* It might cause random player disconnection when a player join server, I don't have time to test and fix it, but if you 
+can, please submit a PR, thank you!
+
 ## Support Version
 * 1.8.8
 * 1.17.x

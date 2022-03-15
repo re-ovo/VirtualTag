@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "me.rerere"
-version = "1.0.4"
+version = "1.0.5"
 
 repositories {
     mavenCentral()
@@ -33,7 +33,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-jdbc:0.36.1")
 }
 
-tasks.apply {
+tasks {
     withType<JavaCompile> {
         options.encoding = "UTF-8"
     }
