@@ -50,7 +50,7 @@ class VirtualTag : JavaPlugin() {
         tagManager.task.apply {
             try{
                 cancel()
-            }catch (e: Exception){}
+            }catch (_: Exception){}
         }
         tagManager = VirtualTagManager()
     }
