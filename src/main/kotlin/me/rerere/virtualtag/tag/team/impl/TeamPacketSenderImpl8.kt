@@ -27,8 +27,8 @@ class TeamPacketSenderImpl8 : TeamPacketSender {
                 strings.apply {
                     writeSafely(0, name)
                     writeSafely(1, name)
-                    writeSafely(2, prefix)
-                    writeSafely(3, suffix)
+                    writeSafely(2, prefix.take(16))
+                    writeSafely(3, suffix.take(16))
                     writeSafely(4,"always")
                 }
             }.broadcast()
@@ -52,8 +52,8 @@ class TeamPacketSenderImpl8 : TeamPacketSender {
                 strings.apply {
                     writeSafely(0, name)
                     writeSafely(1, name)
-                    writeSafely(2, prefix)
-                    writeSafely(3, suffix)
+                    writeSafely(2, prefix.take(16))
+                    writeSafely(3, suffix.take(16))
                     writeSafely(4,"always")
                 }
             }.send(player)
