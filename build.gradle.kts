@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "me.rerere"
-version = "1.0.6"
+version = "1.0.7"
 
 repositories {
     mavenCentral()
@@ -26,11 +26,6 @@ dependencies {
 
     // Okhttp
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
-
-    // Exposed ORM
-    implementation("org.jetbrains.exposed:exposed-core:0.36.1")
-    implementation("org.jetbrains.exposed:exposed-dao:0.36.1")
-    implementation("org.jetbrains.exposed:exposed-jdbc:0.36.1")
 }
 
 tasks {
