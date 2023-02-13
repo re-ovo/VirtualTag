@@ -3,15 +3,16 @@ import org.apache.tools.ant.filters.ReplaceTokens
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.github.johnrengelman.shadow") version "6.1.0"
-    kotlin("jvm") version "1.5.31"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
+    kotlin("jvm") version "1.8.0"
 }
 
 group = "me.rerere"
-version = "1.0.7"
+version = "1.0.8"
 
 repositories {
     mavenCentral()
+    maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven(url = "https://hub.spigotmc.org/nexus/content/groups/public/")
     maven(url = "https://repo.dmulloy2.net/repository/public/")
     maven(url = "https://repo.codemc.io/repository/nms/")
@@ -19,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly(group = "org.spigotmc", name = "spigot", version = "1.17.1-R0.1-SNAPSHOT")
-    compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.17.1-R0.1-SNAPSHOT")
+    //compileOnly(group = "org.spigotmc", name = "spigot", version = "1.19.3-R0.1-SNAPSHOT")
+    compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.19.3-R0.1-SNAPSHOT")
     compileOnly(group = "com.comphenix.protocol", name = "ProtocolLib", version = "4.7.0")
     compileOnly(group = "me.clip", name = "placeholderapi", version = "2.10.10")
 
@@ -31,6 +32,7 @@ dependencies {
 tasks {
     withType<JavaCompile> {
         options.encoding = "UTF-8"
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
     }
     withType<KotlinCompile>{
         kotlinOptions.jvmTarget = "1.8"
@@ -60,6 +62,7 @@ tasks {
                     "VERSION" to project.version
                 )
             )
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
         }
         filesMatching("application.properties") {
             expand(project.properties)

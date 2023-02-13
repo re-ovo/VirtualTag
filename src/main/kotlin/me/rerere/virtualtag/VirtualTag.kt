@@ -48,9 +48,10 @@ class VirtualTag : JavaPlugin() {
         logger.info("Reloading VirtualTag...")
         configModule = ConfigModule()
         tagManager.task.apply {
-            try{
+            try {
                 cancel()
-            }catch (_: Exception){}
+            } catch (_: Exception) {
+            }
         }
         tagManager = VirtualTagManager()
     }
@@ -63,7 +64,7 @@ class VirtualTag : JavaPlugin() {
         asyncTask {
             logger.info("Checking update...")
             val latest = UpdateChecker.getLatestVersion()
-            if(this.description.version != latest){
+            if (this.description.version != latest) {
                 logger.info("(!) Found a update: $latest, you are still using ${description.version}")
             } else {
                 logger.info("You are using the latest version!")

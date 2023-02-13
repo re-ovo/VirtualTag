@@ -1,8 +1,8 @@
 # VirtualTag
-![](https://img.shields.io/github/issues/jiangdashao/VirtualTag)
-![](https://img.shields.io/github/forks/jiangdashao/VirtualTag)
-![](https://img.shields.io/github/stars/jiangdashao/VirtualTag)
-![](https://img.shields.io/github/license/jiangdashao/VirtualTag)
+![](https://img.shields.io/github/issues/re-ovo/VirtualTag)
+![](https://img.shields.io/github/forks/re-ovo/VirtualTag)
+![](https://img.shields.io/github/stars/re-ovo/VirtualTag)
+![](https://img.shields.io/github/license/re-ovo/VirtualTag)
 
 VirtualTag is a NameTag Edit plugin for **modern** minecraft server
 
@@ -14,6 +14,7 @@ can, please submit a PR, thank you!
 * 1.8.8
 * 1.17.x
 * 1.18.x
+* 1.19.x
 
 ## Download
 https://github.com/jiangdashao/VirtualTag/releases/latest
