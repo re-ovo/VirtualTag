@@ -4,6 +4,7 @@ import com.comphenix.protocol.utility.MinecraftReflection
 import org.bukkit.ChatColor
 
 object ChatFormatConverter {
+    @Suppress("UNCHECKED_CAST")
     val chatFormatClass = MinecraftReflection.getMinecraftClass("EnumChatFormat") as Class<Any>
     val chatFormatResetFields: Array<Any> = chatFormatClass.enumConstants
 }

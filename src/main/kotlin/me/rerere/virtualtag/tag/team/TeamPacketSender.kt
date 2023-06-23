@@ -20,8 +20,8 @@ interface TeamPacketSender {
 }
 
 val teamPacketSender: TeamPacketSender = when (nmsVersion()) {
-    // 1.17.x, 1.18.x, 1.19.x
-    "v1_17_R1","v1_18_R1", "v1_18_R2", "v1_19_R1", "v1_19_R2", "v1_19_R3" -> {
+    // 1.17.x, 1.18.x, 1.19.x, 1.20.x
+    "v1_17_R1","v1_18_R1", "v1_18_R2", "v1_19_R1", "v1_19_R2", "v1_19_R3", "v1_20_R1" -> {
         TeamPacketSenderImpl17()
     }
 
