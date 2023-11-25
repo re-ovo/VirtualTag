@@ -9,10 +9,16 @@ class VirtualTeam(
     val prefix: String,
     val suffix: String
 ) {
+    private var _valid = false // Make sure the team is valid for client
+
     val players: MutableSet<String> = hashSetOf()
 
     val tag: Tag
         get() = Tag(prefix, suffix)
+
+    init {
+        create()
+    }
 
     fun recreate() {
         destroy()
@@ -30,7 +36,10 @@ class VirtualTeam(
     }
 
     private fun create() {
+        if(_valid) return
+
         teamPacketSender.createTeam(this)
+        _valid = true
     }
 
     fun createForPlayer(player: Player) {
@@ -38,7 +47,10 @@ class VirtualTeam(
     }
 
     fun destroy() {
+        if(!_valid) return
+
         teamPacketSender.destroyTeam(this)
+        _valid = false
     }
 
     override fun equals(other: Any?): Boolean {
