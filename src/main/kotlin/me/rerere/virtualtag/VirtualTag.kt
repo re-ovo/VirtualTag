@@ -1,7 +1,6 @@
 package me.rerere.virtualtag
 
 import com.github.retrooper.packetevents.PacketEvents
-import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder
 import me.rerere.virtualtag.command.VirtualTagCommand
 import me.rerere.virtualtag.configuration.ConfigModule
 import me.rerere.virtualtag.listener.PlayerListener
@@ -20,17 +19,6 @@ class VirtualTag : JavaPlugin() {
     lateinit var configModule: ConfigModule
     lateinit var tagHandler: VirtualTagHandler
     lateinit var tagManager: VirtualTagManager
-
-    override fun onLoad() {
-        logger.info("Start loading VirtualTag...")
-        logger.info("Loading PacketEvents")
-        PacketEvents.setAPI(SpigotPacketEventsBuilder.build(this))
-        PacketEvents.getAPI().settings
-            .fullStackTrace(true)
-            .checkForUpdates(false)
-            .debug(false)
-        PacketEvents.getAPI().load()
-    }
 
     override fun onEnable() {
         PacketEvents.getAPI().init()
@@ -69,7 +57,6 @@ class VirtualTag : JavaPlugin() {
     }
 
     override fun onDisable() {
-        PacketEvents.getAPI().terminate()
         Bukkit.getScheduler().cancelTasks(this)
     }
 

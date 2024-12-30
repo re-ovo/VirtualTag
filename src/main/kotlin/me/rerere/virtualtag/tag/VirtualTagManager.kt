@@ -6,6 +6,7 @@ import me.rerere.virtualtag.hook.applyPlaceholderAPI
 import me.rerere.virtualtag.util.allPlayers
 import me.rerere.virtualtag.util.timerTask
 import me.rerere.virtualtag.virtualTag
+import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.entity.Player
 import java.util.*
 
@@ -42,7 +43,8 @@ class VirtualTagManager {
             }
         val targetTag = Tag(
             prefix = matchedTags.joinToString(separator = "") { it?.prefix ?: "" },
-            suffix = matchedTags.joinToString(separator = "") { it?.suffix ?: "" }
+            suffix = matchedTags.joinToString(separator = "") { it?.suffix ?: "" },
+            color = matchedTags.firstOrNull()?.color ?: NamedTextColor.WHITE
         ).apply {
             applyPlaceholderAPI(player)
             colorful()

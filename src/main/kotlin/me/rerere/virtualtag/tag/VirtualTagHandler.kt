@@ -35,7 +35,8 @@ class VirtualTagHandler {
         val team = this.getVirtualTeamByTag(tag) ?: VirtualTeam(
             name = this.generateTeamName(),
             prefix = tag.prefix,
-            suffix = tag.suffix
+            suffix = tag.suffix,
+            color = tag.color
         )
         team.recreate()
         team.addPlayer(player.name)
@@ -57,7 +58,8 @@ class VirtualTagHandler {
     }?.let {
         Tag(
             it.prefix,
-            it.suffix
+            it.suffix,
+            it.color
         )
     }
 

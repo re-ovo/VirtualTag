@@ -2,19 +2,21 @@ package me.rerere.virtualtag.tag
 
 import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.tag.team.teamPacketSender
+import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.entity.Player
 
 class VirtualTeam(
     val name: String,
     val prefix: String,
-    val suffix: String
+    val suffix: String,
+    val color: NamedTextColor
 ) {
     private var _valid = false // Make sure the team is valid for client
 
     val players: MutableSet<String> = hashSetOf()
 
     val tag: Tag
-        get() = Tag(prefix, suffix)
+        get() = Tag(prefix, suffix, color)
 
     init {
         create()

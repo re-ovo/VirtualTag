@@ -4,11 +4,8 @@ import com.github.retrooper.packetevents.util.adventure.AdventureSerializer
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerTeams
 import me.rerere.virtualtag.tag.VirtualTeam
 import me.rerere.virtualtag.util.broadcast
-import me.rerere.virtualtag.util.lastChatColor
 import me.rerere.virtualtag.util.send
-import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.entity.Player
-import java.util.*
 
 class TeamPacketSender {
     fun createTeam(virtualTeam: VirtualTeam) {
@@ -22,7 +19,7 @@ class TeamPacketSender {
                     AdventureSerializer.fromLegacyFormat(suffix),
                     WrapperPlayServerTeams.NameTagVisibility.ALWAYS,
                     WrapperPlayServerTeams.CollisionRule.NEVER,
-                    lastChatColor(prefix),
+                    color,
                     WrapperPlayServerTeams.OptionData.NONE
                 ),
                 players
@@ -41,7 +38,7 @@ class TeamPacketSender {
                     AdventureSerializer.fromLegacyFormat(suffix),
                     WrapperPlayServerTeams.NameTagVisibility.ALWAYS,
                     WrapperPlayServerTeams.CollisionRule.NEVER,
-                    lastChatColor(prefix),
+                    color,
                     WrapperPlayServerTeams.OptionData.NONE
                 ),
                 players

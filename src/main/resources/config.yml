@@ -31,8 +31,10 @@ groups:
     priority: 1
     prefix: '&e[VIP]&r'
     suffix: ''
+    color: 'WHITE'
   default:
     permission: ''
     priority: 0
     prefix: '&7'
     suffix: ''
+    color: 'WHITE'
