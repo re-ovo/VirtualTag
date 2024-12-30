@@ -3,7 +3,7 @@ version: @VERSION@
 main: me.rerere.virtualtag.VirtualTag
 author: RE
 depend:
-  - ProtocolLib
+  - packetevents
 softdepend:
   - PlaceholderAPI
 commands:
