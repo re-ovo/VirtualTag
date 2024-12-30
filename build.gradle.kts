@@ -14,16 +14,16 @@ repositories {
     mavenCentral()
     maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven(url = "https://hub.spigotmc.org/nexus/content/groups/public/")
-    maven(url = "https://repo.dmulloy2.net/repository/public/")
-    maven(url = "https://repo.codemc.io/repository/nms/")
-    maven(url = "https://repo.extendedclip.com/content/repositories/placeholderapi/")
+    maven(url = "https://repo.extendedclip.com/releases/")
+    maven(url = "https://repo.codemc.io/repository/maven-releases/")
+    maven(url = "https://repo.codemc.io/repository/maven-snapshots/")
 }
 
 dependencies {
     //compileOnly(group = "org.spigotmc", name = "spigot", version = "1.19.3-R0.1-SNAPSHOT")
-    compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.19.3-R0.1-SNAPSHOT")
-    compileOnly(group = "com.comphenix.protocol", name = "ProtocolLib", version = "4.7.0")
-    compileOnly(group = "me.clip", name = "placeholderapi", version = "2.10.10")
+    compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.21.4-R0.1-SNAPSHOT")
+    compileOnly(group = "me.clip", name = "placeholderapi", version = "2.11.6")
+    compileOnly(group = "com.github.retrooper", name = "packetevents-spigot", version = "2.7.0")
 
     // Okhttp
     implementation("com.squareup.okhttp3:okhttp:4.9.3")

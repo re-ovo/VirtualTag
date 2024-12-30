@@ -11,10 +11,7 @@ VirtualTag is a NameTag Edit plugin for **modern** minecraft server
 can, please submit a PR, thank you!
 
 ## Support Version
-* 1.8.8
-* 1.17.x
-* 1.18.x
-* 1.19.x
+* 1.7.x to latest
 
 ## Download
 https://github.com/jiangdashao/VirtualTag/releases/latest
@@ -26,4 +23,4 @@ https://github.com/jiangdashao/VirtualTag/releases/latest
 * Easy to config
 
 ## Dependency
-* ProtocolLib
+* PacketEvents
