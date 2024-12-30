@@ -1,6 +1,5 @@
 package me.rerere.virtualtag
 
-import com.github.retrooper.packetevents.PacketEvents
 import me.rerere.virtualtag.command.VirtualTagCommand
 import me.rerere.virtualtag.configuration.ConfigModule
 import me.rerere.virtualtag.listener.PlayerListener
@@ -21,7 +20,6 @@ class VirtualTag : JavaPlugin() {
     lateinit var tagManager: VirtualTagManager
 
     override fun onEnable() {
-        PacketEvents.getAPI().init()
         logger.info("Loading Config Files")
         configModule = ConfigModule()
         logger.info("Loading TagHandler")
