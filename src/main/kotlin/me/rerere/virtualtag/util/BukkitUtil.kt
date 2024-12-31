@@ -28,6 +28,11 @@ object HexColorUtil {
 }
 
 fun timerTask(delay: Long = 0, interval: Long = 1, task: () -> Unit) = Bukkit.getScheduler().runTaskTimer(
+    virtualTag(), Runnable(task), delay, interval
+)
+
+fun asyncTimerTask(delay: Long = 0, interval: Long = 1, task: () -> Unit) =
+    Bukkit.getScheduler().runTaskTimerAsynchronously(
         virtualTag(), Runnable(task), delay, interval
     )
 
