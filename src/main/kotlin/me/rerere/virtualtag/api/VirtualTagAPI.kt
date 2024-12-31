@@ -18,6 +18,17 @@ object VirtualTagAPI {
     }
 
     @JvmStatic
+    fun setPlayerTag(player: Player, prefix: String, suffix: String) {
+        virtualTag().tagHandler.setPlayerTag(
+            player, Tag(
+                prefix = prefix,
+                suffix = suffix,
+                color = NamedTextColor.WHITE
+            )
+        )
+    }
+
+    @JvmStatic
     fun removePlayerTag(player: Player) {
         virtualTag().tagHandler.removePlayerTag(player)
     }
