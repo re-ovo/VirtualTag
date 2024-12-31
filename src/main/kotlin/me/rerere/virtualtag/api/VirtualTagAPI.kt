@@ -6,6 +6,7 @@ import org.bukkit.entity.Player
 
 @Suppress("unused")
 object VirtualTagAPI {
+    @JvmOverloads
     @JvmStatic
     fun setPlayerTag(player: Player, prefix: String, suffix: String, color: NamedTextColor = NamedTextColor.WHITE) {
         virtualTag().tagHandler.setPlayerTag(

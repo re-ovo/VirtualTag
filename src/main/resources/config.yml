@@ -16,6 +16,11 @@ general:
   # after the player’s nametag is actually changed.
   update_interval: 20
 
+  # Set whether VirtualTag should update the player's NameTag asynchronously
+  # Enabling this option allows the plugin to perform updates in a separate thread,
+  # which can reduce impact on the main server thread.
+  async_update: false
+
   # If the player has multiple NameTags, should they be displayed at the same time?
   # For example, if a player is both an [Admin] and a [VIP], then enabling this
   # option will show his two nametags at the same time: [Admin][Vip]

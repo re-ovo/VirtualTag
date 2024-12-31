@@ -7,6 +7,7 @@ import net.kyori.adventure.text.format.NamedTextColor
 class MainConfig : ConfigFile("config.yml") {
     val updateInterval = int("general.update_interval", 20).coerceAtLeast(1)
     val multipleNameTags = boolean("general.multiple_name_tags", false)
+    val asyncUpdate = boolean("general.async_update", false)
     val groups = configuration.getConfigurationSection("groups")?.let { section ->
         section.getKeys(false).map {
             val groupSection = section.getConfigurationSection(it)!!

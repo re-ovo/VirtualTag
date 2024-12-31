@@ -4,6 +4,7 @@ import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.api.colorful
 import me.rerere.virtualtag.hook.applyPlaceholderAPI
 import me.rerere.virtualtag.util.allPlayers
+import me.rerere.virtualtag.util.asyncTimerTask
 import me.rerere.virtualtag.util.timerTask
 import me.rerere.virtualtag.virtualTag
 import net.kyori.adventure.text.format.NamedTextColor
@@ -15,10 +16,18 @@ class VirtualTagManager {
     // Cache the tag when the player uploads the update to prevent frequent tag updates
     private val previousTagCache = hashMapOf<UUID, Tag>()
 
-    val task = timerTask(
-        interval = virtualTag().configModule.mainConfig.updateInterval.toLong()
-    ) {
-        updateAll()
+    val task = if (virtualTag().configModule.mainConfig.asyncUpdate) {
+        asyncTimerTask(
+            interval = virtualTag().configModule.mainConfig.updateInterval.toLong()
+        ) {
+            updateAll()
+        }
+    } else {
+        timerTask(
+            interval = virtualTag().configModule.mainConfig.updateInterval.toLong()
+        ) {
+            updateAll()
+        }
     }
 
     private fun updateAll() {
