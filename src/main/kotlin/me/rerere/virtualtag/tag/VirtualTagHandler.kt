@@ -3,9 +3,10 @@ package me.rerere.virtualtag.tag
 import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.virtualTag
 import org.bukkit.entity.Player
+import java.util.concurrent.ConcurrentHashMap
 
 class VirtualTagHandler {
-    val virtualTeams = hashSetOf<VirtualTeam>()
+    val virtualTeams = ConcurrentHashMap.newKeySet<VirtualTeam>()
 
     // Generate a unique team name
     private fun generateTeamName(): String {

@@ -4,6 +4,7 @@ import me.rerere.virtualtag.api.Tag
 import me.rerere.virtualtag.tag.team.teamPacketSender
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.entity.Player
+import java.util.concurrent.ConcurrentHashMap
 
 class VirtualTeam(
     val name: String,
@@ -13,7 +14,7 @@ class VirtualTeam(
 ) {
     private var _valid = false // Make sure the team is valid for client
 
-    val players: MutableSet<String> = hashSetOf()
+    val players: MutableSet<String> = ConcurrentHashMap.newKeySet()
 
     val tag: Tag
         get() = Tag(prefix, suffix, color)

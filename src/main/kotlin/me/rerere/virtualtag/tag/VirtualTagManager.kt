@@ -9,11 +9,12 @@ import me.rerere.virtualtag.virtualTag
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.entity.Player
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 
 class VirtualTagManager {
 
     // Cache the tag when the player uploads the update to prevent frequent tag updates
-    private val previousTagCache = hashMapOf<UUID, Tag>()
+    private val previousTagCache = ConcurrentHashMap<UUID, Tag>()
 
     val task = if (virtualTag().configModule.mainConfig.asyncUpdate) {
         TaskUtil.asyncTimerTask(
