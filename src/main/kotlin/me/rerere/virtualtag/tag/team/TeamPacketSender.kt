@@ -1,5 +1,7 @@
 package me.rerere.virtualtag.tag.team
 
+import com.github.retrooper.packetevents.PacketEvents
+import com.github.retrooper.packetevents.manager.server.ServerVersion
 import com.github.retrooper.packetevents.util.adventure.AdventureSerializer
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerTeams
 import me.rerere.virtualtag.tag.VirtualTeam
@@ -8,6 +10,10 @@ import me.rerere.virtualtag.util.send
 import org.bukkit.entity.Player
 
 class TeamPacketSender {
+
+    val serverOlderThan1_12_2 =
+        PacketEvents.getAPI().serverManager.version.isOlderThanOrEquals((ServerVersion.V_1_12_2));
+
     fun createTeam(virtualTeam: VirtualTeam) {
         with(virtualTeam) {
             WrapperPlayServerTeams(
@@ -15,8 +21,10 @@ class TeamPacketSender {
                 WrapperPlayServerTeams.TeamMode.CREATE,
                 WrapperPlayServerTeams.ScoreBoardTeamInfo(
                     AdventureSerializer.serializer().fromLegacy(name),
-                    AdventureSerializer.serializer().fromLegacy(prefix),
-                    AdventureSerializer.serializer().fromLegacy(suffix),
+                    AdventureSerializer.serializer()
+                        .fromLegacy(if (serverOlderThan1_12_2) prefix.take(16) else prefix),
+                    AdventureSerializer.serializer()
+                        .fromLegacy(if (serverOlderThan1_12_2) prefix.take(16) else prefix),
                     WrapperPlayServerTeams.NameTagVisibility.ALWAYS,
                     WrapperPlayServerTeams.CollisionRule.NEVER,
                     color,
@@ -34,8 +42,10 @@ class TeamPacketSender {
                 WrapperPlayServerTeams.TeamMode.CREATE,
                 WrapperPlayServerTeams.ScoreBoardTeamInfo(
                     AdventureSerializer.serializer().fromLegacy(name),
-                    AdventureSerializer.serializer().fromLegacy(prefix),
-                    AdventureSerializer.serializer().fromLegacy(suffix),
+                    AdventureSerializer.serializer()
+                        .fromLegacy(if (serverOlderThan1_12_2) prefix.take(16) else prefix),
+                    AdventureSerializer.serializer()
+                        .fromLegacy(if (serverOlderThan1_12_2) prefix.take(16) else prefix),
                     WrapperPlayServerTeams.NameTagVisibility.ALWAYS,
                     WrapperPlayServerTeams.CollisionRule.NEVER,
                     color,
