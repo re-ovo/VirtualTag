@@ -24,7 +24,7 @@ class TeamPacketSender {
                     AdventureSerializer.serializer()
                         .fromLegacy(if (serverOlderThan1_12_2) prefix.take(16) else prefix),
                     AdventureSerializer.serializer()
-                        .fromLegacy(if (serverOlderThan1_12_2) prefix.take(16) else prefix),
+                        .fromLegacy(if (serverOlderThan1_12_2) suffix.take(16) else suffix),
                     WrapperPlayServerTeams.NameTagVisibility.ALWAYS,
                     WrapperPlayServerTeams.CollisionRule.NEVER,
                     color,
@@ -45,7 +45,7 @@ class TeamPacketSender {
                     AdventureSerializer.serializer()
                         .fromLegacy(if (serverOlderThan1_12_2) prefix.take(16) else prefix),
                     AdventureSerializer.serializer()
-                        .fromLegacy(if (serverOlderThan1_12_2) prefix.take(16) else prefix),
+                        .fromLegacy(if (serverOlderThan1_12_2) suffix.take(16) else suffix),
                     WrapperPlayServerTeams.NameTagVisibility.ALWAYS,
                     WrapperPlayServerTeams.CollisionRule.NEVER,
                     color,
